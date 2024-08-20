@@ -7,7 +7,7 @@ import nacl from 'tweetnacl';
 import { Keypair } from '@solana/web3.js';
 import MnemonicContainer from './MnemonicContainer';
 import { hdkey } from 'ethereumjs-wallet';
-import { Stepper, Button, Group, Box, Text } from '@mantine/core';
+import { Stepper, Button, Group, Box, Text, Table } from '@mantine/core';
 
 export const Dashboard = () => {
   const [mnemonic, setMnemonic] = useState(generateMnemonic().split(' '));
@@ -64,9 +64,6 @@ export const Dashboard = () => {
   };
 
   return (
-
-    // TODO: Add table for a better ui
-    // Make the app efficient
     <Box>
       <Stepper active={activeStep} onStepClick={setActiveStep}>
         <Stepper.Step label="First step" description="View your mnemonic">
@@ -81,30 +78,77 @@ export const Dashboard = () => {
               Add Ethereum Wallet
             </Button>
             <Box>
-              <Text >Solana Wallets</Text>
-              {solanaWallets.map((wallet, index) => (
-                <Text key={index}>Wallet {index + 1}: {wallet}</Text>
-              ))}
+              <Text>Solana Wallets</Text>
+              <Table highlightOnHover>
+                <Table.Thead>
+                  <Table.Tr>
+                    <Table.Th>Wallet Type</Table.Th>
+                    <Table.Th>Wallet No.</Table.Th>
+                    <Table.Th>Key</Table.Th>
+                  </Table.Tr>
+                </Table.Thead>
+                <Table.Tbody>
+                  {solanaWallets.length === 0 ? 
+                 <Table.Tr>
+                     <Table.Td></Table.Td>
+                    <Table.Td>
+
+                    Please add a Solana wallet
+                    </Table.Td>
+                    <Table.Td></Table.Td>
+                 </Table.Tr>
+                 : solanaWallets.map((wallet, index) => (
+                    <Table.Tr key={`solana-${index}`}>
+                      <Table.Td>Solana</Table.Td>
+                      <Table.Td>Wallet {" "} {index+1}</Table.Td>
+                      <Table.Td>{wallet}</Table.Td>
+                    </Table.Tr>
+                  ))}
+                </Table.Tbody>
+              </Table>
             </Box>
             <Box>
-              <Text >Ethereum Wallets</Text>
-              {ethereumWallets.map((wallet, index) => (
-                <Text key={index}>Wallet {index + 1}: {wallet}</Text>
-              ))}
+              <Text>Ethereum Wallets</Text>
+              <Table highlightOnHover>
+                <Table.Thead>
+                  <Table.Tr>
+                  <Table.Th>Wallet Type</Table.Th>
+                    <Table.Th>Wallet No.</Table.Th>
+                    <Table.Th>Key</Table.Th>
+                  </Table.Tr>
+                </Table.Thead>
+                <Table.Tbody>
+                  {ethereumWallets.length === 0 ?
+                   <Table.Tr >
+                     <Table.Td></Table.Td>
+                   <Table.Td>Please add an Etherium wallet</Table.Td>
+                   <Table.Td></Table.Td>
+                 </Table.Tr>
+                  : ethereumWallets.map((wallet, index) => (
+                    <Table.Tr key={`eth-${index}`}>
+                      <Table.Td>Ethereum</Table.Td>
+                      <Table.Td>Wallet {" "} {index+1}</Table.Td>
+                      <Table.Td>{wallet}</Table.Td>
+                    </Table.Tr>
+                  ))}
+                </Table.Tbody>
+              </Table>
             </Box>
           </div>
         </Stepper.Step>
       </Stepper>
 
-      <Group align='center' mt="xl">
-        <Button variant="light" color='blue' onClick={handleBack} disabled={activeStep === 0}>
-          Back
-        </Button>
-        <Button variant="light" color='green' onClick={handleNext} disabled={activeStep === steps.length - 1}>
+      <Group align='center' justify='center' mt="xl">
+        {activeStep !== 0 && (
+          <Button size='md' variant="light" color='blue' onClick={handleBack} disabled={activeStep === 0}>
+            Back
+          </Button>
+        )}
+        <Button size='md' variant="light" color='green' onClick={handleNext} disabled={activeStep === steps.length - 1}>
           Next
         </Button>
         {activeStep === steps.length - 1 && (
-          <Button variant='light' color="red" onClick={resetMnemonic}>
+          <Button size='md' variant='light' color="red" onClick={resetMnemonic}>
             Reset Mnemonic
           </Button>
         )}

@@ -1,18 +1,24 @@
-
 type mnemonicProps = {
-    mnemonicList: string[]
-}
+  mnemonicList: string[];
+};
 
-const MnemonicContainer = ({mnemonicList}: mnemonicProps ) => {
+const MnemonicContainer = ({ mnemonicList }: mnemonicProps) => {
   return (
-    <div className="p-2 flex gap-8 flex-wrap max-w-[600px]">
-        {
-            mnemonicList.map((item,idx)=>(
-                <div className="p-4 w-28 text-center border rounded-lg flex gap-2 items-center justify-between" key={idx}><span>{idx+1}</span> {item}</div>
-            ))
-        }
+    <div className="flex flex-col items-center gap-5">
+      <h3 className="font-semibold text-2xl">Secret Recovery Phase</h3>
+      <p className="text-sm text-gray-400">Save these words in a safe place</p>
+      <div className="px-4 py-6 flex gap-6 flex-wrap max-w-[600px] bg-black justify-center rounded-xl ">
+        {mnemonicList.map((item, idx) => (
+          <div
+            className="p-4 w-28 text-center  flex gap-4 items-center "
+            key={idx}
+          >
+            <span>{idx + 1}</span> {item}
+          </div>
+        ))}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default MnemonicContainer
+export default MnemonicContainer;

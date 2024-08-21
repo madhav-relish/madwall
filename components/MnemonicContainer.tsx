@@ -1,6 +1,4 @@
-type mnemonicProps = {
-  mnemonicList: string[];
-};
+import { mnemonicProps } from "@/lib/utils";
 
 const MnemonicContainer = ({ mnemonicList }: mnemonicProps) => {
   return (

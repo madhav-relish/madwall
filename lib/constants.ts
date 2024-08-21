@@ -1,0 +1,2 @@
+export const SOLANA_ENDPOINT = "https://solana-mainnet.g.alchemy.com/v2/EabPSoFIeU6eaAQdwGUuxdmaSyMZPnQh"
+export const ETHEREUM_ENDPOINT = "https://eth-mainnet.g.alchemy.com/v2/EabPSoFIeU6eaAQdwGUuxdmaSyMZPnQh"

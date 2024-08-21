@@ -8,18 +8,18 @@ import { Button, Group } from "@mantine/core"
 const StepNavigationButtons = ({activeStep, handleBack, handleNext, resetMnemonic, steps}: navigationButtonProps) => {
   return (
     <Group align="center" justify="center" mt="xl">
-    {activeStep !== 0 && (
+    {activeStep !== 0  && (
       <Button
         size="md"
         variant="light"
         color="blue"
         onClick={handleBack}
-        disabled={activeStep === 0}
+        disabled={activeStep === (0 || 1)}
       >
         Back
       </Button>
     )}
-    <Button
+   {activeStep !== 0 && <Button
       size="md"
       variant="light"
       color="blue"
@@ -27,7 +27,7 @@ const StepNavigationButtons = ({activeStep, handleBack, handleNext, resetMnemoni
       disabled={activeStep === steps.length - 1}
     >
       Next
-    </Button>
+    </Button>}
     {activeStep === steps.length - 1 && (
       <Button size="md" variant="light" color="red" onClick={resetMnemonic}>
         Reset Mnemonic

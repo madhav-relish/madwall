@@ -13,6 +13,7 @@ import WalletButtons from "./AddWalletButtons";
 import StepNavigationButtons from "./StepNavigationButtons";
 import { derivationPath, WalletType } from "@/lib/utils";
 import ViewWalletDetails from "./ViewWalletDetails";
+import GettingStarted from "./GettingStarted";
 
 export const Dashboard = () => {
   const [mnemonic, setMnemonic] = useState(generateMnemonic().split(" "));
@@ -70,7 +71,7 @@ export const Dashboard = () => {
     setActiveStep(0);
   };
 
-  const steps = ["View Mnemonic", "Add and View Wallets"];
+  const steps = ["Welcome","View Mnemonic", "Add and View Wallets"];
 
   const handleNext = () => {
     setActiveStep((current) => current + 1);
@@ -86,13 +87,16 @@ export const Dashboard = () => {
   }
 
   return (
-    <Box>
+    <Box w={"70%"}>
       <Stepper active={activeStep} onStepClick={setActiveStep}>
-        <Stepper.Step label="First step" description="View your mnemonic">
+      <Stepper.Step label="First step"  description="Getting Started">
+          <GettingStarted handleNext={handleNext}/>
+        </Stepper.Step>
+        <Stepper.Step label="Second step" description="View your mnemonic">
           <MnemonicContainer mnemonicList={mnemonic} />
         </Stepper.Step>
-        <Stepper.Step label="Second step" description="Add and view wallets">
-          <div className="flex flex-col gap-4 min-w-[600px]">
+        <Stepper.Step label="Third step" description="Add and view wallets">
+          <div className="flex flex-col gap-4 justify-center">
             <WalletButtons generateWallets={generateWallets} />
             <Box>
               <WalletTable

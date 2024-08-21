@@ -7,11 +7,11 @@ import { addWalletProps } from '@/lib/utils';
 
 const WalletButtons = ({ generateWallets }: addWalletProps) => {
   return (
-    <div className="flex flex-col gap-4 min-w-[600px]">
-      <Button onClick={() => generateWallets('solana')}>
+    <div className="flex flex-col justify-center items-center  gap-4 ">
+      <Button w={180} onClick={() => generateWallets('solana')}>
         Add Solana Wallet
       </Button>
-      <Button onClick={() => generateWallets('eth')}>
+      <Button w={180}  onClick={() => generateWallets('eth')}>
         Add Ethereum Wallet
       </Button>
     </div>

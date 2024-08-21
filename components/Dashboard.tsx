@@ -89,13 +89,13 @@ export const Dashboard = () => {
   return (
     <Box w={"70%"}>
       <Stepper active={activeStep} onStepClick={setActiveStep}>
-      <Stepper.Step label="First step"  description="Getting Started">
+      <Stepper.Step label="Welcome"  description="Getting Started">
           <GettingStarted handleNext={handleNext}/>
         </Stepper.Step>
-        <Stepper.Step label="Second step" description="View your mnemonic">
+        <Stepper.Step label="Seed Phrase " description="View your mnemonic">
           <MnemonicContainer mnemonicList={mnemonic} />
         </Stepper.Step>
-        <Stepper.Step label="Third step" description="Add and view wallets">
+        <Stepper.Step label="Wallet" description="Add and view wallets">
           <div className="flex flex-col gap-4 justify-center">
             <WalletButtons generateWallets={generateWallets} />
             <Box>

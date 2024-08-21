@@ -8,6 +8,7 @@ const WalletTable = ({
   walletType,
   handleSelectWallet,
 }: walletProps) => {
+    const type = walletType === "solana" ? "Solana" : "Ethereum"
   return (
     <Box>
       <Text>{title}</Text>
@@ -23,7 +24,7 @@ const WalletTable = ({
           {wallets.length === 0 ? (
             <Table.Tr>
               <Table.Td></Table.Td>
-              <Table.Td>Please add a {walletType} wallet</Table.Td>
+              <Table.Td>Please add a {type} wallet</Table.Td>
               <Table.Td></Table.Td>
             </Table.Tr>
           ) : (

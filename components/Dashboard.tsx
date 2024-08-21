@@ -111,6 +111,7 @@ export const Dashboard = () => {
               />
             </Box>
           </div>
+          <div className="my-4 text-sm text-gray-400"><span className="text-red-500 pb-2">*</span>Select a wallet to view your balance</div>
         </Stepper.Step>
       </Stepper>
       <StepNavigationButtons
